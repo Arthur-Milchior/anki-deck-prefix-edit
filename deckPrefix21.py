@@ -78,13 +78,13 @@ def removePrefix(cids):
     
 def setupMenu(browser):
     a = QAction("Add prefix", browser)
-    b = QAction("Remove prefix", browser)
     a.setShortcut(QKeySequence("Ctrl+Alt+P")) 
-    b.setShortcut(QKeySequence("Ctrl+Shift+Alt+P")) 
     a.triggered.connect(lambda : onAddPrefix(browser))
-    b.triggered.connect(lambda : onRemovePrefix(browser))
     browser.form.menuEdit.addAction(a)
-    browser.form.menuEdit.addAction(b)
+    a = QAction("Remove prefix", browser)
+    a.setShortcut(QKeySequence("Ctrl+Shift+Alt+P")) 
+    a.triggered.connect(lambda : onRemovePrefix(browser))
+    browser.form.menuEdit.addAction(a)
 
 def onAddPrefix(browser):
     addPrefix(browser.selectedCards())
