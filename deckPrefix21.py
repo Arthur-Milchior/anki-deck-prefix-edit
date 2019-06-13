@@ -24,16 +24,17 @@ from PyQt5.QtGui import *
 from anki.hooks import addHook
 from aqt import mw
 from aqt.utils import getOnlyText, tooltip
+from .config import getConfig
 import anki.notes
 
 def addPrefix(cids):
     mw.checkpoint("Add prefix")
     mw.progress.start()
-    
+
     prefix=getOnlyText(_("Prefix to add:"), default="prefix")
     # Copy notes
     for cid in cids:
-        print ("Found card: %s" % (cid))
+        #print ("Found card: %s" % (cid))
         card = mw.col.getCard(cid)
         did = card.odid or card.did
         deckName = mw.col.decks.name(did)
@@ -43,7 +44,7 @@ def addPrefix(cids):
         newDid = mw.col.decks.id(newDeckName,type=deck)
         card.did=newDid
         card.flush()
-        
+
     # Reset collection and main window
     mw.col.decks.flush()
     mw.progress.finish()
@@ -54,10 +55,10 @@ def addPrefix(cids):
 def removePrefix(cids):
     mw.checkpoint("Remove prefix")
     mw.progress.start()
-    
+
     # Copy notes
     for cid in cids:
-        print( "Found card: %s" % (cid))
+        #print( "Found card: %s" % (cid))
         card = mw.col.getCard(cid)
         did = card.odid or card.did
         deckName = mw.col.decks.name(did)
@@ -67,22 +68,27 @@ def removePrefix(cids):
         newDid = mw.col.decks.id(newDeckName,type=deck)
         card.did=newDid
         card.flush()
-        
+
     # Reset collection and main window
     mw.col.decks.flush()
     mw.col.reset()
     mw.reset()
     mw.progress.finish()
     tooltip(_("""Prefix removed."""))
-    
-    
+
+
 def setupMenu(browser):
     a = QAction("Add prefix", browser)
-    a.setShortcut(QKeySequence("Ctrl+Alt+P")) 
+    shortcut = getConfig("Shortcut: Add prefix","Ctrl+Alt+P")
+    if shortcut:
+        a.setShortcut(QKeySequence(shortcut))
     a.triggered.connect(lambda : onAddPrefix(browser))
     browser.form.menuEdit.addAction(a)
+    shortcut = getConfig("Shortcut: Remove prefix","Ctrl+Shift+Alt+P")
+    if shortcut:
+        a.setShortcut(QKeySequence(shortcut))
     a = QAction("Remove prefix", browser)
-    a.setShortcut(QKeySequence("Ctrl+Shift+Alt+P")) 
+    a.setShortcut(QKeySequence("Ctrl+Shift+Alt+P"))
     a.triggered.connect(lambda : onRemovePrefix(browser))
     browser.form.menuEdit.addAction(a)
 

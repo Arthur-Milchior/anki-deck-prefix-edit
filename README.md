@@ -9,17 +9,12 @@
 
 ## Rationales
 
-My main goal was: exporting some cards selected in the browser. (This
-can now be done using add-on [1983204951:Export cards selected in the
-Browser](https://ankiweb.net/shared/info/1983204951).)
+My main goal was: exporting some cards selected in the browser. (This can now be done using add-on [1983204951:Export cards selected in the Browser](https://ankiweb.net/shared/info/1983204951).)
 
-In order to do this, I add a common prefix to all of cards I want to
-export. In the main window, I export this deck. Once I import the deck
-again, I just delete this prefix, and everything go back in the
+In order to do this, I add a common prefix to all of cards I want to export. In the main window, I export this deck. Once I import the deck again, I just delete this prefix, and everything go back in the
 initial deck.
 
-It leaves an empty deck "prefix" which can quickly and easily be
-removed.
+It leaves an empty deck "prefix" which can quickly and easily be removed.
 
 ## TODO
 Allow to directly export notes by selecting them in the browser
@@ -29,5 +24,6 @@ Key         |Value
 Copyright   |Arthur Milchior <arthur@milchior.fr>
 Based on    |Anki code by Damien Elmes <anki@ichi2.net>
 License     |GNU AGPL, version 3 or later; http|//www.gnu.org/licenses/agpl.html
-Source in   | https://github.com/Arthur-Milchior/anki-show-html
-Addon number| [1262882843](https://ankiweb.net/shared/info/1262882843)
+Source in   | https://github.com/Arthur-Milchior/anki-deck-prefix-edit
+Addon number| [1262882834](https://ankiweb.net/shared/info/1262882834)
+Support me on| [![Ko-fi](https://ko-fi.com/img/Kofi_Logo_Blue.svg)](Ko-fi.com/arthurmilchior) or [![Patreon](http://www.milchior.fr/patreon.png)](https://www.patreon.com/bePatron?u=146206)
